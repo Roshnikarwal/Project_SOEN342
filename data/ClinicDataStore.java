@@ -4,6 +4,7 @@ package data;
 import AppointmentAndAvailability.Appointment;
 import AppointmentAndAvailability.Patient;
 import AppointmentAndAvailability.AvailabilitySlot;
+import AppointmentAndAvailability.HealthcareProfessional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,16 @@ public class ClinicDataStore {
     // Add an availability slot
     public void addAvailabilitySlot(AvailabilitySlot slot) {
         slots.add(slot);
+    }
+
+    public HealthcareProfessional findHealthcareProfessional(Long professionalId) {
+        for (AvailabilitySlot slot : slots) {
+            HealthcareProfessional professional = slot.getProfessional();
+            if (professional.getProfessionalId().equals(professionalId)) {
+                return professional;
+            }
+        }
+        return null;
     }
 
     // Find an availability slot by ID
